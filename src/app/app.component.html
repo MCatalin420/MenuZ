@@ -40,7 +40,7 @@
             <h1>{{menu.name}}</h1>
             <p>{{menu.tagline}}</p><span class="public-flower">✳</span>
         </header>
-        <nav class="public-tabs"><button [class.active]="category==='All items'" (click)="category='All items'">All
+        <nav #menuCategories id="menu-categories" class="public-tabs" tabindex="-1" aria-label="Menu categories"><button [class.active]="category==='All items'" (click)="category='All items'">All
                 dishes</button>@for(c of menu.categories;track c){<button [class.active]="category===c"
                 (click)="category=c">{{c}}</button>}</nav>
         <div class="public-dishes">@for(item of items;track item.id){@if(item.available){<article>
@@ -50,6 +50,8 @@
                         ')}}</small><strong>{{money(item.price)}}</strong>
                 </div>@if(item.image){<img [src]="item.image" [alt]="item.name" (error)="imageError($event)">}
             </article>}}</div>
+        @if(showBackToCategories){<button type="button" class="back-to-categories"
+            (click)="backToTop()"><span aria-hidden="true">↑</span> Back to top</button>}
         <footer>Made with care. Served with love. <span>Powered by <b>menuz✳</b></span>
             <p>Please tell our team about any allergies before ordering.</p>
         </footer>@if(preview){<button class="primary preview-close" (click)="preview=false;category='All items'">← Back

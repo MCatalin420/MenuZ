@@ -18,3 +18,10 @@
 .menu-view .public-tabs button:hover{background:var(--menu-hover)}
 .menu-view .public-tabs button.active{background:var(--menu-accent);color:var(--menu-bg)}
 .menu-view .preview-close{background:var(--menu-accent);border-color:var(--menu-accent);color:var(--menu-bg)}
+.menu-view .back-to-categories{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:20;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 20px;border:1px solid var(--menu-accent);border-radius:28px;background:var(--menu-accent);color:var(--menu-bg);box-shadow:0 4px 20px #0003;font-size:13px;font-weight:600;white-space:nowrap}
+.menu-view .back-to-categories span{font-size:20px;line-height:1}
+.menu-view .back-to-categories:hover{filter:brightness(1.1)}
+.menu-view .back-to-categories:focus-visible,.menu-view .public-tabs:focus-visible{outline:3px solid var(--menu-accent);outline-offset:4px}
+.menu-view .public-tabs{scroll-margin-top:16px}
+.menu-view .public-menu{padding-bottom:100px}
+.menu-view:has(.preview-close) .back-to-categories{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
