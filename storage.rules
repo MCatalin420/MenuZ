@@ -1,0 +1,8 @@
+rules_version = '2';
+service firebase.storage {
+ match /b/{bucket}/o {
+  // Uploads use the authenticated API and Admin SDK, after resizing and validation.
+  // Public menu photos are delivered through their unguessable download-token URLs.
+  match /{allPaths=**} { allow read, write: if false; }
+ }
+}

@@ -1,0 +1,1 @@
+{"extends":"../tsconfig.json","compilerOptions":{"types":["node"],"noEmit":true},"include":["index.ts","../server/app.ts","../server/application/menu-service.ts","../server/domain/**/*.ts","../server/infrastructure/**/*.ts","../shared/**/*.ts"]}
