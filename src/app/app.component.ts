@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import QRCode from 'qrcode';
@@ -10,6 +10,18 @@ export class AppComponent implements OnInit {
  publicId=location.pathname.match(/^\/m\/([^/]+)\/?$/)?.[1];preview=false;dialog='';editing?:MenuItem;qr='';email='';password='';register=false;needsLogin=false;categoryName='';
  nav=[{name:'Overview',icon:'◫'},{name:'Menu editor',icon:'☷'},{name:'QR code',icon:'▦'},{name:'Restaurant settings',icon:'⚙'}];
  photoFile?:File;photoPreview='';uploading=false;uploadProgress=0;photoError='';
+ menuDark=this.readMenuTheme();
+ showBackToCategories=false;
+ @HostListener('window:scroll')
+ onWindowScroll(){this.showBackToCategories=window.scrollY>80;}
+ backToTop(){
+  window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+ }
+ private readMenuTheme(){
+  try{const saved=localStorage.getItem('menuz-menu-theme');if(saved==='dark'||saved==='light')return saved==='dark';}catch{}
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+ }
+ toggleMenuTheme(){this.menuDark=!this.menuDark;try{localStorage.setItem('menuz-menu-theme',this.menuDark?'dark':'light');}catch{}}
  clearPhotoSelection(){if(this.photoPreview)URL.revokeObjectURL(this.photoPreview);this.photoPreview='';this.photoFile=undefined;this.photoError='';}
  selectPhoto(event:Event){
   const input=event.target as HTMLInputElement;const file=input.files?.[0];input.value='';if(!file)return;
